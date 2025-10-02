@@ -1,103 +1,90 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { accounts, cards, loans, recentTransactions, investments, insurances } from '@/lib/data';
+import { BriefcaseIcon, ArrowDownIcon, CashIcon, ShoppingCartIcon, LightningIcon, GasIcon, FilmIcon, WalletIcon, CreditCardIcon, ChartIcon, ShieldIcon } from '@/components/icons';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0);
+  const totalDebt = [...cards, ...loans].reduce((sum, item) => sum + Math.abs(item.balance), 0);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="p-4 md:p-6 lg:p-8">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-dark mb-2">Bienvenido, Juan</h1>
+        <p className="text-gray-600">Este es tu resumen financiero</p>
+      </div>
+
+      {/* Main Balance Card */}
+      <div className="bg-gradient-to-br from-primary to-primary-light rounded-2xl p-6 md:p-8 text-white mb-8 shadow-lg">
+        <p className="text-sm opacity-90 mb-1">Saldo total disponible</p>
+        <p className="text-4xl md:text-5xl font-bold mb-6">${totalBalance.toLocaleString('es-CL')}</p>
+        <div className="flex gap-4">
+          <Link href="/transferir" className="flex-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm py-3 px-4 rounded-lg transition-colors text-center font-medium">
+            Transferir
+          </Link>
+          <Link href="/pagar" className="flex-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm py-3 px-4 rounded-lg transition-colors text-center font-medium">
+            Pagar
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Quick Access */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8">
+        <Link href="/cuentas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
+          <WalletIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <p className="text-sm font-medium text-dark">Cuentas</p>
+          <p className="text-xs text-gray-500 mt-1">{accounts.length}</p>
+        </Link>
+        <Link href="/tarjetas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
+          <CreditCardIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <p className="text-sm font-medium text-dark">Tarjetas</p>
+          <p className="text-xs text-gray-500 mt-1">{cards.length}</p>
+        </Link>
+        <Link href="/inversiones" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
+          <ChartIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <p className="text-sm font-medium text-dark">Inversiones</p>
+          <p className="text-xs text-gray-500 mt-1">{investments.length}</p>
+        </Link>
+        <Link href="/seguros" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
+          <ShieldIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <p className="text-sm font-medium text-dark">Seguros</p>
+          <p className="text-xs text-gray-500 mt-1">{insurances.length}</p>
+        </Link>
+      </div>
+
+      {/* Recent Transactions */}
+      <div>
+        <h2 className="text-xl font-bold text-dark mb-4">Movimientos recientes</h2>
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          {recentTransactions.map((transaction) => (
+            <div key={transaction.id} className="flex items-center justify-between p-5 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors cursor-pointer">
+              <div className="flex items-start space-x-4 flex-1">
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                  transaction.type === 'income' ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
+                }`}>
+                  {transaction.category === 'Sueldo' && <BriefcaseIcon />}
+                  {transaction.category === 'Transferencia' && <ArrowDownIcon />}
+                  {transaction.category === 'Depósito' && <CashIcon />}
+                  {transaction.category === 'Alimentación' && <ShoppingCartIcon />}
+                  {transaction.category === 'Servicios' && <LightningIcon />}
+                  {transaction.category === 'Combustible' && <GasIcon />}
+                  {transaction.category === 'Entretenimiento' && <FilmIcon />}
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-dark">{transaction.description}</p>
+                  <p className="text-sm text-gray-500">{transaction.detail}</p>
+                  <p className="text-xs text-gray-400 mt-1">{transaction.date} • {transaction.time}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-base md:text-lg font-bold text-dark">
+                  {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toLocaleString('es-CL')}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">{transaction.category}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
