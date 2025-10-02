@@ -19,23 +19,19 @@ export default function InversionDetailPage({ params }: { params: Promise<{ id: 
   const currentValue = investment.amount + earnings;
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-6 lg:p-8">
       <Link href="/inversiones" className="text-primary hover:underline mb-4 inline-block">&larr; Volver a inversiones</Link>
 
-      <h1 className="text-3xl font-bold text-dark mb-8">{investment.name}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">{investment.name}</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className={`lg:col-span-2 rounded-xl p-8 shadow-lg text-white ${
-          investment.return > 0
-            ? 'bg-gradient-to-br from-secondary to-secondary-light'
-            : 'bg-gradient-to-br from-red-500 to-red-600'
-        }`}>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+        <div className="lg:col-span-2 bg-secondary rounded-xl p-6 md:p-8 shadow-lg text-white">
           <p className="text-sm opacity-90 mb-1">{investment.name}</p>
           <p className="text-sm opacity-75 mb-6">
             {investment.type === 'fixed' ? 'Renta Fija' : 'Renta Variable'}
           </p>
           <p className="text-sm opacity-90 mb-2">Valor actual</p>
-          <p className="text-5xl font-bold">${currentValue.toLocaleString('es-CL')}</p>
+          <p className="text-4xl md:text-5xl font-bold">${currentValue.toLocaleString('es-CL')}</p>
           <div className="mt-6 flex items-center space-x-4">
             <div>
               <p className="text-sm opacity-90">Rentabilidad</p>
@@ -52,7 +48,7 @@ export default function InversionDetailPage({ params }: { params: Promise<{ id: 
           <button className="w-full bg-primary text-white px-6 py-4 rounded-lg hover:bg-primary-light transition-colors font-medium">
             Aumentar inversión
           </button>
-          <button className="w-full border-2 border-red-500 text-red-500 px-6 py-4 rounded-lg hover:bg-red-500 hover:text-white transition-colors font-medium">
+          <button className="w-full border-2 border-primary text-primary px-6 py-4 rounded-lg hover:bg-primary hover:text-white transition-colors font-medium">
             Rescatar inversión
           </button>
         </div>
@@ -126,7 +122,7 @@ export default function InversionDetailPage({ params }: { params: Promise<{ id: 
                 <p className="font-semibold text-dark">{movement.description}</p>
                 <p className="text-sm text-gray-500">{movement.date}</p>
               </div>
-              <p className={`text-xl font-bold ${movement.type === 'earning' ? 'text-secondary' : 'text-dark'}`}>
+              <p className="text-xl font-bold text-dark">
                 {movement.type === 'earning' ? '+' : ''}${Math.abs(movement.amount).toLocaleString('es-CL')}
               </p>
             </div>

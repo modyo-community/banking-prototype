@@ -25,17 +25,17 @@ export default function CreditoDetailPage({ params }: { params: Promise<{ id: st
   const estimatedMonths = Math.ceil(loan.balance / loan.monthlyPayment);
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-6 lg:p-8">
       <Link href="/creditos" className="text-primary hover:underline mb-4 inline-block">&larr; Volver a créditos</Link>
 
-      <h1 className="text-3xl font-bold text-dark mb-8">{loan.type}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">{loan.type}</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2 bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-8 shadow-lg text-white">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+        <div className="lg:col-span-2 bg-primary rounded-xl p-6 md:p-8 shadow-lg text-white">
           <p className="text-sm opacity-90 mb-1">{loan.type}</p>
           <p className="text-sm opacity-75 mb-6">Tasa: {loan.interestRate}% anual</p>
           <p className="text-sm opacity-90 mb-2">Saldo adeudado</p>
-          <p className="text-5xl font-bold">${loan.balance.toLocaleString('es-CL')}</p>
+          <p className="text-4xl md:text-5xl font-bold">${loan.balance.toLocaleString('es-CL')}</p>
           <p className="text-sm opacity-90 mt-6">Cuota mensual: ${loan.monthlyPayment.toLocaleString('es-CL')}</p>
         </div>
 

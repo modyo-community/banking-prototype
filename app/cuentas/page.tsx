@@ -3,21 +3,17 @@ import { accounts } from '@/lib/data';
 import { WalletIcon } from '@/components/icons';
 
 export default function CuentasPage() {
-  const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0);
-
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold text-dark mb-8">Mis Cuentas</h1>
-
-      <div className="bg-primary rounded-xl p-8 shadow-lg text-white mb-8">
-        <p className="text-sm opacity-90 mb-2">Balance Total</p>
-        <p className="text-5xl font-bold">${totalBalance.toLocaleString('es-CL')}</p>
-      </div>
+    <div className="p-4 md:p-6 lg:p-8">
+      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8 animate-fade-in">Mis Cuentas</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {accounts.map((account) => (
+        {accounts.map((account, index) => (
           <Link key={account.id} href={`/cuentas/${account.id}`}>
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            <div
+              className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all cursor-pointer hover:scale-105 animate-slide-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <p className="text-lg font-semibold text-dark">{account.type}</p>
@@ -30,7 +26,7 @@ export default function CuentasPage() {
 
               <div className="mt-4">
                 <p className="text-sm text-gray-600 mb-1">Saldo disponible</p>
-                <p className="text-3xl font-bold text-dark">${account.balance.toLocaleString('es-CL')}</p>
+                <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-dark">${account.balance.toLocaleString('es-CL')}</p>
               </div>
 
               <div className="mt-4 pt-4 border-t border-gray-100">

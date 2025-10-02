@@ -16,17 +16,17 @@ export default function SeguroDetailPage({ params }: { params: Promise<{ id: str
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-6 lg:p-8">
       <Link href="/seguros" className="text-primary hover:underline mb-4 inline-block">&larr; Volver a seguros</Link>
 
-      <h1 className="text-3xl font-bold text-dark mb-8">{insurance.name}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">{insurance.name}</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2 bg-gradient-to-br from-secondary to-secondary-light rounded-xl p-8 shadow-lg text-white">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+        <div className="lg:col-span-2 bg-secondary rounded-xl p-6 md:p-8 shadow-lg text-white">
           <p className="text-sm opacity-90 mb-1">{insurance.name}</p>
           <p className="text-sm opacity-75 mb-6">Estado: {insurance.status}</p>
           <p className="text-sm opacity-90 mb-2">Cobertura total</p>
-          <p className="text-5xl font-bold">${insurance.coverage.toLocaleString('es-CL')}</p>
+          <p className="text-4xl md:text-5xl font-bold">${insurance.coverage.toLocaleString('es-CL')}</p>
           <p className="text-sm opacity-90 mt-6">Prima mensual: ${insurance.premium.toLocaleString('es-CL')}</p>
         </div>
 

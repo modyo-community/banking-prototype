@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { cards } from '@/lib/data';
 import { use } from 'react';
+import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons';
 
 export default function TarjetaDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -40,8 +41,18 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
         {/* Card Carousel */}
         <div>
           <div className="relative">
+            {/* Previous Button */}
+            <button
+              onClick={handlePrevious}
+              className="absolute left-0 top-[120px] -translate-y-1/2 -translate-x-4 z-10 bg-white p-2 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 text-dark"
+              aria-label="Tarjeta anterior"
+            >
+              <ChevronLeftIcon className="w-6 h-6" />
+            </button>
+
+            {/* Card */}
             <div
-              className="rounded-xl p-8 shadow-lg text-white h-60 flex flex-col justify-between"
+              className="rounded-xl p-8 shadow-lg text-white h-60 flex flex-col justify-between transition-all duration-300"
               style={{ backgroundColor: selectedCard.color }}
             >
               <div>
@@ -55,31 +66,27 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
-            {/* Carousel Controls */}
-            <div className="flex justify-between mt-4">
-              <button
-                onClick={handlePrevious}
-                className="bg-white px-4 py-2 rounded-lg shadow hover:shadow-md transition-shadow text-dark font-medium"
-              >
-                ← Anterior
-              </button>
-              <div className="flex space-x-2 items-center">
-                {cards.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedCardIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === selectedCardIndex ? 'bg-primary w-6' : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={handleNext}
-                className="bg-white px-4 py-2 rounded-lg shadow hover:shadow-md transition-shadow text-dark font-medium"
-              >
-                Siguiente →
-              </button>
+            {/* Next Button */}
+            <button
+              onClick={handleNext}
+              className="absolute right-0 top-[120px] -translate-y-1/2 translate-x-4 z-10 bg-white p-2 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 text-dark"
+              aria-label="Tarjeta siguiente"
+            >
+              <ChevronRightIcon className="w-6 h-6" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center space-x-2 mt-6">
+              {cards.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedCardIndex(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === selectedCardIndex ? 'bg-primary w-8' : 'bg-gray-300 w-2'
+                  }`}
+                  aria-label={`Ir a tarjeta ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
 

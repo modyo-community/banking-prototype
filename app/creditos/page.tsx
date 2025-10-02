@@ -6,8 +6,8 @@ export default function CreditosPage() {
   const totalMonthlyPayment = loans.reduce((sum, loan) => sum + loan.monthlyPayment, 0);
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold text-dark mb-8">Mis Créditos</h1>
+    <div className="p-4 md:p-6 lg:p-8">
+      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">Mis Créditos</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="bg-white rounded-xl p-6 shadow-sm">
@@ -22,8 +22,8 @@ export default function CreditosPage() {
 
       <div className="space-y-6">
         {loans.map((loan) => (
-          <Link key={loan.id} href={`/creditos/${loan.id}`}>
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+          <Link key={loan.id} href={`/creditos/${loan.id}`} className="block">
+            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all cursor-pointer hover:scale-[1.01]">
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-dark mb-1">{loan.type}</h3>

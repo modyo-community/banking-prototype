@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { accounts, cards, loans } from '@/lib/data';
 import { useSearchParams } from 'next/navigation';
 
-export default function PagarPage() {
+function PagarContent() {
   const searchParams = useSearchParams();
   const typeParam = searchParams.get('type');
   const idParam = searchParams.get('id');
@@ -59,7 +59,7 @@ export default function PagarPage() {
 
   if (paymentSuccess && step === 4) {
     return (
-      <div className="p-8">
+      <div className="p-4 md:p-6 lg:p-8">
         <div className="max-w-2xl mx-auto">
           <div className="bg-white rounded-lg p-8 shadow-sm text-center">
             <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
@@ -107,10 +107,10 @@ export default function PagarPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-6 lg:p-8">
       <Link href="/" className="text-primary hover:underline mb-4 inline-block">&larr; Volver al inicio</Link>
 
-      <h1 className="text-3xl font-bold text-dark mb-8">Pagar</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">Pagar</h1>
 
       <div className="max-w-2xl mx-auto">
         {/* Progress Steps */}
@@ -344,5 +344,21 @@ export default function PagarPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function PagarPage() {
+  return (
+    <Suspense fallback={
+      <div className="p-4 md:p-6 lg:p-8">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg p-8 shadow-sm">
+            <p className="text-center text-gray-600">Cargando...</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <PagarContent />
+    </Suspense>
   );
 }
