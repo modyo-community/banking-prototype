@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { accounts } from '@/lib/data';
 import { use } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, WalletIcon, BriefcaseIcon, ArrowDownIcon, CashIcon, ShoppingCartIcon, LightningIcon } from '@/components/icons';
+import PromotionBanner from '@/components/PromotionBanner';
 
 export default function CuentaDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -64,6 +65,21 @@ export default function CuentaDetailPage({ params }: { params: Promise<{ id: str
       <Link href="/" className="text-primary hover:underline mb-4 inline-block">&larr; Volver al inicio</Link>
 
       <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">Detalle de Cuenta</h1>
+
+      {/* Promotion Banner */}
+      <div className="mb-6 md:mb-8">
+        <PromotionBanner
+          title="Aumenta tus intereses"
+          description="Mantén más de $2.000.000 en tu cuenta de ahorro y obtén una tasa preferencial de 5.5% anual."
+          buttonText="Ver beneficios"
+          variant="secondary"
+          icon={
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clipRule="evenodd" />
+            </svg>
+          }
+        />
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
         {/* Account Summary with Carousel */}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { cards } from '@/lib/data';
 import { use } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, ShoppingCartIcon, GasIcon, FilmIcon, CashIcon } from '@/components/icons';
+import PromotionBanner from '@/components/PromotionBanner';
 
 export default function TarjetaDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -37,6 +38,21 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
       <Link href="/tarjetas" className="text-primary hover:underline mb-4 inline-block">&larr; Volver a tarjetas</Link>
 
       <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">Detalle de Tarjeta</h1>
+
+      {/* Promotion Banner */}
+      <div className="mb-6 md:mb-8">
+        <PromotionBanner
+          title="Duplica tus puntos"
+          description="Usa tu tarjeta DynamicBank en compras superiores a $50.000 y acumula el doble de puntos. Válido hasta fin de mes."
+          buttonText="Conoce más"
+          variant="gradient"
+          icon={
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clipRule="evenodd" />
+            </svg>
+          }
+        />
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
         {/* Card Carousel */}
