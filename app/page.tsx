@@ -47,7 +47,7 @@ export default function Home() {
       {/* Balance and Quick Access Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Main Balance Card */}
-        <div className="bg-gradient-to-br from-primary to-primary-light rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col">
+        <div className="bg-primary rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col">
           <p className="text-sm opacity-90 mb-1">Saldo total disponible</p>
           <p className="text-4xl md:text-5xl font-bold mb-auto">${totalBalance.toLocaleString('es-CL')}</p>
           <div className="flex gap-4 mt-6">
@@ -62,25 +62,33 @@ export default function Home() {
 
         {/* Quick Access */}
         <div className="grid grid-cols-2 gap-3 md:gap-4">
-          <Link href="/cuentas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
-            <WalletIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <Link href="/cuentas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-primary text-center">
+            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center">
+              <WalletIcon className="w-6 h-6 text-primary" />
+            </div>
             <p className="text-sm font-medium text-dark">Cuentas</p>
-            <p className="text-lg font-bold text-dark mt-1">{accounts.length}</p>
+            <p className="text-lg font-bold text-primary mt-1">{accounts.length}</p>
           </Link>
-          <Link href="/tarjetas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
-            <CreditCardIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <Link href="/tarjetas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-secondary text-center">
+            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-secondary/10 flex items-center justify-center">
+              <CreditCardIcon className="w-6 h-6 text-secondary" />
+            </div>
             <p className="text-sm font-medium text-dark">Tarjetas</p>
-            <p className="text-lg font-bold text-dark mt-1">{cards.length}</p>
+            <p className="text-lg font-bold text-secondary mt-1">{cards.length}</p>
           </Link>
-          <Link href="/inversiones" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
-            <ChartIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <Link href="/inversiones" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-primary text-center">
+            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center">
+              <ChartIcon className="w-6 h-6 text-primary" />
+            </div>
             <p className="text-sm font-medium text-dark">Inversiones</p>
-            <p className="text-lg font-bold text-dark mt-1">{investments.length}</p>
+            <p className="text-lg font-bold text-primary mt-1">{investments.length}</p>
           </Link>
-          <Link href="/seguros" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
-            <ShieldIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
+          <Link href="/seguros" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-secondary text-center">
+            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-secondary/10 flex items-center justify-center">
+              <ShieldIcon className="w-6 h-6 text-secondary" />
+            </div>
             <p className="text-sm font-medium text-dark">Seguros</p>
-            <p className="text-lg font-bold text-dark mt-1">{insurances.length}</p>
+            <p className="text-lg font-bold text-secondary mt-1">{insurances.length}</p>
           </Link>
         </div>
       </div>
@@ -119,7 +127,7 @@ export default function Home() {
         <div className="bg-white rounded-xl p-6 shadow-sm">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-bold text-dark">Ingresos</h3>
-            <select className="text-sm text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary">
+            <select className="text-sm text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary bg-white">
               <option>Mensual</option>
               <option>Semanal</option>
               <option>Anual</option>
@@ -151,7 +159,7 @@ export default function Home() {
         <div className="bg-white rounded-xl p-6 shadow-sm">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-bold text-dark">Tipo de gastos</h3>
-            <select className="text-sm text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary">
+            <select className="text-sm text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-secondary bg-white">
               <option>Mensual</option>
               <option>Semanal</option>
               <option>Anual</option>
@@ -178,7 +186,7 @@ export default function Home() {
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-2xl font-bold text-dark">$950.000</p>
+                <p className="text-2xl font-bold text-secondary">$950.000</p>
               </div>
             </div>
             <div className="space-y-3">
@@ -210,7 +218,7 @@ export default function Home() {
                 >
                   <div className="flex items-start space-x-4 flex-1">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      transaction.type === 'income' ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
+                      transaction.type === 'income' ? 'bg-gradient-to-br from-secondary/20 to-primary/20 text-secondary' : 'bg-gradient-to-br from-gray-light to-gray text-gray-600'
                     }`}>
                       {transaction.category === 'Sueldo' && <BriefcaseIcon />}
                       {transaction.category === 'Transferencia' && <ArrowDownIcon />}

@@ -11,14 +11,19 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
   const { id } = use(params);
   const [selectedCardIndex, setSelectedCardIndex] = useState(cards.findIndex(c => c.id === parseInt(id)));
   const [expandedTransaction, setExpandedTransaction] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
   const selectedCard = cards[selectedCardIndex];
 
   const handlePrevious = () => {
+    setIsAnimating(true);
     setSelectedCardIndex((prev) => (prev > 0 ? prev - 1 : cards.length - 1));
+    setTimeout(() => setIsAnimating(false), 300);
   };
 
   const handleNext = () => {
+    setIsAnimating(true);
     setSelectedCardIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
+    setTimeout(() => setIsAnimating(false), 300);
   };
 
   if (!selectedCard) {
@@ -123,7 +128,7 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
 
         {/* Card Details */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-lg p-6 shadow-sm">
+          <div className={`bg-white rounded-lg p-6 shadow-sm transition-all duration-300 ${isAnimating ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
             <h2 className="text-xl font-bold text-dark mb-4">Información</h2>
             <div className="space-y-4">
               <div className="flex justify-between">
@@ -132,11 +137,11 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Saldo utilizado</span>
-                <span className="font-bold text-dark">${Math.abs(selectedCard.balance).toLocaleString('es-CL')}</span>
+                <span className="font-bold text-primary">${Math.abs(selectedCard.balance).toLocaleString('es-CL')}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Crédito disponible</span>
-                <span className="font-bold text-dark">${availableCredit.toLocaleString('es-CL')}</span>
+                <span className="font-bold text-secondary">${availableCredit.toLocaleString('es-CL')}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Fecha de pago</span>
@@ -148,7 +153,7 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
             <div className="mt-6">
               <div className="flex justify-between text-sm text-gray-600 mb-2">
                 <span>Uso del cupo</span>
-                <span>{usagePercentage.toFixed(1)}%</span>
+                <span className="font-bold text-primary">{usagePercentage.toFixed(1)}%</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3">
                 <div
@@ -160,7 +165,7 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
           </div>
 
           {/* Recent Transactions */}
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className={`bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 ${isAnimating ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
             <div className="p-6 border-b border-gray-100">
               <h2 className="text-xl font-bold text-dark">Últimos movimientos</h2>
             </div>
@@ -180,7 +185,7 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
                     >
                       <div className="flex items-start space-x-4 flex-1">
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                          transaction.amount > 0 ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
+                          transaction.amount > 0 ? 'bg-gradient-to-br from-secondary/20 to-primary/20 text-secondary' : 'bg-gradient-to-br from-gray-light to-gray text-gray-600'
                         }`}>
                           {transaction.category === 'Alimentación' && <ShoppingCartIcon />}
                           {transaction.category === 'Combustible' && <GasIcon />}

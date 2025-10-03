@@ -29,7 +29,7 @@ const menuItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-  const submenuRef = useRef<HTMLDivElement>(null);
+  const submenuRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     // Check if current path is within transferir section

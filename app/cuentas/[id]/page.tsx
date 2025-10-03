@@ -11,14 +11,19 @@ export default function CuentaDetailPage({ params }: { params: Promise<{ id: str
   const { id } = use(params);
   const [selectedAccountIndex, setSelectedAccountIndex] = useState(accounts.findIndex(acc => acc.id === parseInt(id)));
   const [expandedTransaction, setExpandedTransaction] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
   const selectedAccount = accounts[selectedAccountIndex];
 
   const handlePrevious = () => {
+    setIsAnimating(true);
     setSelectedAccountIndex((prev) => (prev > 0 ? prev - 1 : accounts.length - 1));
+    setTimeout(() => setIsAnimating(false), 300);
   };
 
   const handleNext = () => {
+    setIsAnimating(true);
     setSelectedAccountIndex((prev) => (prev < accounts.length - 1 ? prev + 1 : 0));
+    setTimeout(() => setIsAnimating(false), 300);
   };
 
   if (!selectedAccount) {
@@ -107,7 +112,7 @@ export default function CuentaDetailPage({ params }: { params: Promise<{ id: str
               </div>
 
               <div className="mt-6">
-                <p className="text-sm text-gray-600 mb-2">Saldo disponible</p>
+                <p className="text-sm text-gray-600 mb-1">Saldo disponible</p>
                 <p className="text-4xl font-bold text-dark">${selectedAccount.balance.toLocaleString('es-CL')}</p>
               </div>
             </div>
@@ -152,7 +157,7 @@ export default function CuentaDetailPage({ params }: { params: Promise<{ id: str
 
         {/* Transactions List */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className={`bg-white rounded-lg shadow-sm overflow-hidden transition-all duration-300 ${isAnimating ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'}`}>
             <div className="p-6 border-b border-gray-100">
               <h2 className="text-xl font-bold text-dark">Movimientos recientes</h2>
             </div>
@@ -168,7 +173,7 @@ export default function CuentaDetailPage({ params }: { params: Promise<{ id: str
                     >
                       <div className="flex items-start space-x-4 flex-1">
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                          transaction.type === 'income' ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
+                          transaction.type === 'income' ? 'bg-gradient-to-br from-secondary/20 to-primary/20 text-secondary' : 'bg-gradient-to-br from-gray-light to-gray text-gray-600'
                         }`}>
                           {transaction.category === 'Sueldo' && <BriefcaseIcon />}
                           {transaction.category === 'Transferencia' && <ArrowDownIcon />}
