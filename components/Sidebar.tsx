@@ -135,7 +135,7 @@ export default function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
             const isSubmenuOpen = openSubmenu === item.href;
 
             return (
-              <li key={item.href} ref={hasSubmenu ? el => submenuRefs.current[item.href] = el : null}>
+              <li key={item.href} ref={hasSubmenu ? el => { submenuRefs.current[item.href] = el; } : null}>
                 {hasSubmenu ? (
                   <div className="relative">
                     <button
