@@ -52,7 +52,17 @@ export default function Sidebar() {
   return (
     <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 flex-col">
       <div className="p-4 lg:p-6 border-b border-gray-200">
-        <h1 className="text-xl lg:text-2xl font-bold text-primary">Banca Digital</h1>
+        <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity">
+          <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Icon - Modern banking symbol */}
+            <circle cx="20" cy="25" r="18" fill="var(--color-primary)" opacity="0.15"/>
+            <path d="M12 25L18 31L28 19" stroke="var(--color-primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* Text */}
+            <text x="45" y="30" fontFamily="system-ui, -apple-system, sans-serif" fontSize="18" fontWeight="700" fill="var(--color-dark)">
+              DynamicBank
+            </text>
+          </svg>
+        </Link>
         <p className="text-sm text-gray-600 mt-1">Juan Pérez</p>
       </div>
 
