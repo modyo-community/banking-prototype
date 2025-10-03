@@ -9,6 +9,7 @@ import { ChevronLeftIcon, ChevronRightIcon, WalletIcon, BriefcaseIcon, ArrowDown
 export default function CuentaDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const [selectedAccountIndex, setSelectedAccountIndex] = useState(accounts.findIndex(acc => acc.id === parseInt(id)));
+  const [expandedTransaction, setExpandedTransaction] = useState<number | null>(null);
   const selectedAccount = accounts[selectedAccountIndex];
 
   const handlePrevious = () => {
@@ -141,32 +142,81 @@ export default function CuentaDetailPage({ params }: { params: Promise<{ id: str
             </div>
 
             <div className="divide-y divide-gray-100">
-              {transactions.map((transaction) => (
-                <div key={transaction.id} className="flex items-center justify-between p-5 hover:bg-gray-50 transition-colors cursor-pointer">
-                  <div className="flex items-start space-x-4 flex-1">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      transaction.type === 'income' ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
-                    }`}>
-                      {transaction.category === 'Sueldo' && <BriefcaseIcon />}
-                      {transaction.category === 'Transferencia' && <ArrowDownIcon />}
-                      {transaction.category === 'Depósito' && <CashIcon />}
-                      {transaction.category === 'Alimentación' && <ShoppingCartIcon />}
-                      {transaction.category === 'Servicios' && <LightningIcon />}
+              {transactions.map((transaction) => {
+                const isExpanded = expandedTransaction === transaction.id;
+                return (
+                  <div key={transaction.id} className="border-b border-gray-100 last:border-0">
+                    <div
+                      className="flex items-center justify-between p-5 hover:bg-gray-50 transition-colors cursor-pointer"
+                      onClick={() => setExpandedTransaction(isExpanded ? null : transaction.id)}
+                    >
+                      <div className="flex items-start space-x-4 flex-1">
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          transaction.type === 'income' ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
+                        }`}>
+                          {transaction.category === 'Sueldo' && <BriefcaseIcon />}
+                          {transaction.category === 'Transferencia' && <ArrowDownIcon />}
+                          {transaction.category === 'Depósito' && <CashIcon />}
+                          {transaction.category === 'Alimentación' && <ShoppingCartIcon />}
+                          {transaction.category === 'Servicios' && <LightningIcon />}
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-semibold text-dark">{transaction.description}</p>
+                          <p className="text-sm text-gray-500">{transaction.detail}</p>
+                          <p className="text-xs text-gray-400 mt-1">{transaction.date} • {transaction.time}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="text-right">
+                          <p className="text-base md:text-lg font-bold text-dark">
+                            {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toLocaleString('es-CL')}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1">{transaction.category}</p>
+                        </div>
+                        <svg
+                          className={`w-5 h-5 text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <p className="font-semibold text-dark">{transaction.description}</p>
-                      <p className="text-sm text-gray-500">{transaction.detail}</p>
-                      <p className="text-xs text-gray-400 mt-1">{transaction.date} • {transaction.time}</p>
-                    </div>
+
+                    {isExpanded && (
+                      <div className="px-5 pb-5 bg-gray-50 border-t border-gray-100">
+                        <div className="pt-4 space-y-3">
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-600">ID de transacción</span>
+                            <span className="text-sm font-medium text-dark">TRX-{transaction.id.toString().padStart(6, '0')}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-600">Tipo</span>
+                            <span className="text-sm font-medium text-dark">{transaction.type === 'income' ? 'Ingreso' : 'Egreso'}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-600">Categoría</span>
+                            <span className="text-sm font-medium text-dark">{transaction.category}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-600">Fecha completa</span>
+                            <span className="text-sm font-medium text-dark">{transaction.date} a las {transaction.time}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-600">Saldo después</span>
+                            <span className="text-sm font-medium text-dark">${transaction.balance.toLocaleString('es-CL')}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-sm text-gray-600">Estado</span>
+                            <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Completada</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="text-right">
-                    <p className="text-base md:text-lg font-bold text-dark">
-                      {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toLocaleString('es-CL')}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1">{transaction.category}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

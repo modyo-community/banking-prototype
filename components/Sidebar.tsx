@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HomeIcon, WalletIcon, CreditCardIcon, HomeIconAlt, ShieldIcon, ChartIcon, SendIcon, ReceiptIcon } from './icons';
@@ -12,12 +13,41 @@ const menuItems = [
   { href: '/creditos', label: 'Créditos', Icon: HomeIconAlt },
   { href: '/seguros', label: 'Seguros', Icon: ShieldIcon },
   { href: '/inversiones', label: 'Inversiones', Icon: ChartIcon },
-  { href: '/transferir', label: 'Transferir', Icon: SendIcon },
+  {
+    href: '/transferir',
+    label: 'Transferir',
+    Icon: SendIcon,
+    submenu: [
+      { href: '/transferir', label: 'Nueva transferencia' },
+      { href: '/transferir/contactos', label: 'Contactos' },
+      { href: '/transferir/historial', label: 'Historial' },
+    ]
+  },
   { href: '/pagar', label: 'Pagar', Icon: ReceiptIcon },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const submenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Check if current path is within transferir section
+    if (pathname.startsWith('/transferir')) {
+      setOpenSubmenu('/transferir');
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (submenuRef.current && !submenuRef.current.contains(event.target as Node)) {
+        setOpenSubmenu(null);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 flex-col">
@@ -32,19 +62,69 @@ export default function Sidebar() {
             const isActive = item.href === '/'
               ? pathname === '/'
               : pathname.startsWith(item.href);
+            const hasSubmenu = 'submenu' in item && item.submenu;
+            const isSubmenuOpen = openSubmenu === item.href;
+
             return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`flex items-center space-x-3 px-3 lg:px-4 py-2 lg:py-3 rounded-lg transition-colors ${
-                    isActive
-                      ? 'bg-[#f6f9fd] text-primary'
-                      : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
-                  <item.Icon className="w-5 h-5 flex-shrink-0" />
-                  <span className="font-medium text-sm lg:text-base">{item.label}</span>
-                </Link>
+              <li key={item.href} ref={hasSubmenu ? submenuRef : null}>
+                {hasSubmenu ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setOpenSubmenu(isSubmenuOpen ? null : item.href)}
+                      className={`w-full flex items-center justify-between space-x-3 px-3 lg:px-4 py-2 lg:py-3 rounded-lg transition-colors ${
+                        isActive
+                          ? 'bg-[#f6f9fd] text-primary'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <item.Icon className="w-5 h-5 flex-shrink-0" />
+                        <span className="font-medium text-sm lg:text-base">{item.label}</span>
+                      </div>
+                      <svg
+                        className={`w-4 h-4 transition-transform ${isSubmenuOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {isSubmenuOpen && (
+                      <ul className="mt-1 ml-8 space-y-1">
+                        {item.submenu.map((subitem) => {
+                          const isSubActive = pathname === subitem.href;
+                          return (
+                            <li key={subitem.href}>
+                              <Link
+                                href={subitem.href}
+                                className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                                  isSubActive
+                                    ? 'bg-[#f6f9fd] text-primary font-medium'
+                                    : 'text-gray-600 hover:bg-gray-100'
+                                }`}
+                              >
+                                {subitem.label}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`flex items-center space-x-3 px-3 lg:px-4 py-2 lg:py-3 rounded-lg transition-colors ${
+                      isActive
+                        ? 'bg-[#f6f9fd] text-primary'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <item.Icon className="w-5 h-5 flex-shrink-0" />
+                    <span className="font-medium text-sm lg:text-base">{item.label}</span>
+                  </Link>
+                )}
               </li>
             );
           })}
