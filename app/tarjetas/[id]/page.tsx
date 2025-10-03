@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { cards } from '@/lib/data';
 import { use } from 'react';
-import { ChevronLeftIcon, ChevronRightIcon } from '@/components/icons';
+import { ChevronLeftIcon, ChevronRightIcon, ShoppingCartIcon, GasIcon, FilmIcon, CashIcon } from '@/components/icons';
 
 export default function TarjetaDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -147,19 +147,33 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
             <h2 className="text-xl font-bold text-dark mb-4">Últimos movimientos</h2>
             <div className="space-y-3">
               {[
-                { date: '2025-10-01', description: 'Supermercado Central', amount: -45000 },
-                { date: '2025-09-30', description: 'Gasolinera Shell', amount: -35000 },
-                { date: '2025-09-29', description: 'Netflix', amount: -12000 },
-                { date: '2025-09-28', description: 'Pago realizado', amount: 150000 },
+                { date: '2025-10-01', time: '18:45', description: 'Supermercado Central', detail: 'Compra con tarjeta', amount: -45000, category: 'Alimentación' },
+                { date: '2025-09-30', time: '11:05', description: 'Shell Copec', detail: 'Estación de servicio', amount: -35000, category: 'Combustible' },
+                { date: '2025-09-29', time: '20:30', description: 'Netflix', detail: 'Suscripción mensual', amount: -12000, category: 'Entretenimiento' },
+                { date: '2025-09-28', time: '09:00', description: 'Pago realizado', detail: 'Desde cuenta corriente', amount: 150000, category: 'Pago' },
               ].map((transaction, index) => (
-                <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
-                  <div>
-                    <p className="font-medium text-dark">{transaction.description}</p>
-                    <p className="text-sm text-gray-500">{transaction.date}</p>
+                <div key={index} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors cursor-pointer -mx-2 px-2 rounded">
+                  <div className="flex items-start space-x-3 flex-1">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                      transaction.amount > 0 ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
+                    }`}>
+                      {transaction.category === 'Alimentación' && <ShoppingCartIcon className="w-5 h-5" />}
+                      {transaction.category === 'Combustible' && <GasIcon className="w-5 h-5" />}
+                      {transaction.category === 'Entretenimiento' && <FilmIcon className="w-5 h-5" />}
+                      {transaction.category === 'Pago' && <CashIcon className="w-5 h-5" />}
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-dark text-sm">{transaction.description}</p>
+                      <p className="text-xs text-gray-500">{transaction.detail}</p>
+                      <p className="text-xs text-gray-400 mt-1">{transaction.date} • {transaction.time}</p>
+                    </div>
                   </div>
-                  <p className={`font-bold ${transaction.amount > 0 ? 'text-dark' : 'text-dark'}`}>
-                    {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toLocaleString('es-CL')}
-                  </p>
+                  <div className="text-right">
+                    <p className={`font-bold text-sm ${transaction.amount > 0 ? 'text-dark' : 'text-dark'}`}>
+                      {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount).toLocaleString('es-CL')}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">{transaction.category}</p>
+                  </div>
                 </div>
               ))}
             </div>
