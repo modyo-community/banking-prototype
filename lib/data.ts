@@ -94,6 +94,49 @@ export const investments = [
   },
 ];
 
+export const contacts = [
+  {
+    id: 1,
+    name: 'María González',
+    rut: '12.345.678-9',
+    bank: 'Banco de Chile',
+    accountType: 'Cuenta Corriente',
+    accountNumber: '1234567890',
+    email: 'maria.gonzalez@email.com',
+    favorite: true
+  },
+  {
+    id: 2,
+    name: 'Pedro Martínez',
+    rut: '23.456.789-0',
+    bank: 'Banco Estado',
+    accountType: 'Cuenta Vista',
+    accountNumber: '9876543210',
+    email: 'pedro.martinez@email.com',
+    favorite: true
+  },
+  {
+    id: 3,
+    name: 'Ana Silva',
+    rut: '34.567.890-1',
+    bank: 'Banco Santander',
+    accountType: 'Cuenta Corriente',
+    accountNumber: '5555666677',
+    email: 'ana.silva@email.com',
+    favorite: false
+  },
+  {
+    id: 4,
+    name: 'Carlos Rojas',
+    rut: '45.678.901-2',
+    bank: 'Banco BCI',
+    accountType: 'Cuenta Vista',
+    accountNumber: '1111222233',
+    email: 'carlos.rojas@email.com',
+    favorite: false
+  },
+];
+
 export const recentTransactions = [
   {
     id: 1,
