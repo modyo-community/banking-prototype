@@ -56,7 +56,7 @@ export default function ContactosPage() {
       </div>
 
       {showContactForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 flex items-center justify-center z-50 p-4 backdrop-blur-sm" style={{ backgroundColor: 'rgba(var(--color-primary-rgb, 32, 104, 213), 0.15)' }}>
           <div className="bg-white rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
             <h2 className="text-xl font-bold text-dark mb-4">Agregar nuevo contacto</h2>
             <form onSubmit={handleSaveContact}>

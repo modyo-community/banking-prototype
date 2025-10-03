@@ -1,9 +1,52 @@
 @import "tailwindcss";
 
+/* Font Families */
+[data-font="inter"],
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="jost"] {
+  font-family: 'Jost', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="poppins"] {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="work-sans"] {
+  font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="dm-sans"] {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="plus-jakarta"] {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="manrope"] {
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="outfit"] {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="sora"] {
+  font-family: 'Sora', system-ui, -apple-system, sans-serif;
+}
+
+[data-font="urbanist"] {
+  font-family: 'Urbanist', system-ui, -apple-system, sans-serif;
+}
+
 /* Default Theme */
 :root,
 [data-theme="default"] {
   --color-primary: #2068D5;
+  --color-primary-rgb: 32, 104, 213;
   --color-primary-light: #5B8EE6;
   --color-secondary: #3DC681;
   --color-secondary-light: #6AD89E;
@@ -16,6 +59,7 @@
 /* Crypto Theme */
 [data-theme="crypto"] {
   --color-primary: #B794F6;
+  --color-primary-rgb: 183, 148, 246;
   --color-primary-light: #C9A9F9;
   --color-secondary: #5CC9C4;
   --color-secondary-light: #7DD6D2;
@@ -28,6 +72,7 @@
 /* Sunset Theme */
 [data-theme="sunset"] {
   --color-primary: #F97316;
+  --color-primary-rgb: 249, 115, 22;
   --color-primary-light: #FB923C;
   --color-secondary: #FBBF24;
   --color-secondary-light: #FCD34D;
@@ -40,6 +85,7 @@
 /* Ocean Theme */
 [data-theme="ocean"] {
   --color-primary: #0EA5E9;
+  --color-primary-rgb: 14, 165, 233;
   --color-primary-light: #38BDF8;
   --color-secondary: #06B6D4;
   --color-secondary-light: #22D3EE;
@@ -52,6 +98,7 @@
 /* Forest Theme */
 [data-theme="forest"] {
   --color-primary: #10B981;
+  --color-primary-rgb: 16, 185, 129;
   --color-primary-light: #34D399;
   --color-secondary: #059669;
   --color-secondary-light: #10B981;
@@ -64,6 +111,7 @@
 /* Rose Theme */
 [data-theme="rose"] {
   --color-primary: #EC4899;
+  --color-primary-rgb: 236, 72, 153;
   --color-primary-light: #F472B6;
   --color-secondary: #F472B6;
   --color-secondary-light: #F9A8D4;
@@ -76,6 +124,7 @@
 /* Midnight Theme */
 [data-theme="midnight"] {
   --color-primary: #6366F1;
+  --color-primary-rgb: 99, 102, 241;
   --color-primary-light: #818CF8;
   --color-secondary: #8B5CF6;
   --color-secondary-light: #A78BFA;
@@ -88,6 +137,7 @@
 /* Coral Theme */
 [data-theme="coral"] {
   --color-primary: #FF6B9D;
+  --color-primary-rgb: 255, 107, 157;
   --color-primary-light: #FF8FB5;
   --color-secondary: #FFA07A;
   --color-secondary-light: #FFB399;
