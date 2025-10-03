@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-@theme {
+/* Default Theme */
+:root,
+[data-theme="default"] {
   --color-primary: #2068D5;
   --color-primary-light: #5B8EE6;
   --color-secondary: #3DC681;
@@ -9,4 +11,99 @@
   --color-dark-light: #2C2C2E;
   --color-gray-light: #F5F5F7;
   --color-gray: #C9C5CB;
+}
+
+/* Crypto Theme */
+[data-theme="crypto"] {
+  --color-primary: #B794F6;
+  --color-primary-light: #C9A9F9;
+  --color-secondary: #5CC9C4;
+  --color-secondary-light: #7DD6D2;
+  --color-dark: #1E293B;
+  --color-dark-light: #334155;
+  --color-gray-light: #F8FAFC;
+  --color-gray: #CBD5E1;
+}
+
+/* Sunset Theme */
+[data-theme="sunset"] {
+  --color-primary: #F97316;
+  --color-primary-light: #FB923C;
+  --color-secondary: #FBBF24;
+  --color-secondary-light: #FCD34D;
+  --color-dark: #1C1917;
+  --color-dark-light: #292524;
+  --color-gray-light: #FEF7ED;
+  --color-gray: #D6D3D1;
+}
+
+/* Ocean Theme */
+[data-theme="ocean"] {
+  --color-primary: #0EA5E9;
+  --color-primary-light: #38BDF8;
+  --color-secondary: #06B6D4;
+  --color-secondary-light: #22D3EE;
+  --color-dark: #0F172A;
+  --color-dark-light: #1E293B;
+  --color-gray-light: #F0F9FF;
+  --color-gray: #CBD5E1;
+}
+
+/* Forest Theme */
+[data-theme="forest"] {
+  --color-primary: #10B981;
+  --color-primary-light: #34D399;
+  --color-secondary: #059669;
+  --color-secondary-light: #10B981;
+  --color-dark: #064E3B;
+  --color-dark-light: #065F46;
+  --color-gray-light: #F0FDF4;
+  --color-gray: #D1D5DB;
+}
+
+/* Rose Theme */
+[data-theme="rose"] {
+  --color-primary: #EC4899;
+  --color-primary-light: #F472B6;
+  --color-secondary: #F472B6;
+  --color-secondary-light: #F9A8D4;
+  --color-dark: #831843;
+  --color-dark-light: #9F1239;
+  --color-gray-light: #FDF2F8;
+  --color-gray: #E5E7EB;
+}
+
+/* Midnight Theme */
+[data-theme="midnight"] {
+  --color-primary: #6366F1;
+  --color-primary-light: #818CF8;
+  --color-secondary: #8B5CF6;
+  --color-secondary-light: #A78BFA;
+  --color-dark: #1E1B4B;
+  --color-dark-light: #312E81;
+  --color-gray-light: #F5F3FF;
+  --color-gray: #C4B5FD;
+}
+
+/* Coral Theme */
+[data-theme="coral"] {
+  --color-primary: #FF6B9D;
+  --color-primary-light: #FF8FB5;
+  --color-secondary: #FFA07A;
+  --color-secondary-light: #FFB399;
+  --color-dark: #2D1B2E;
+  --color-dark-light: #3D2B3E;
+  --color-gray-light: #FFF5F7;
+  --color-gray: #E9D5DC;
+}
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-light: var(--color-secondary-light);
+  --color-dark: var(--color-dark);
+  --color-dark-light: var(--color-dark-light);
+  --color-gray-light: var(--color-gray-light);
+  --color-gray: var(--color-gray);
 }

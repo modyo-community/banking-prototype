@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HomeIcon, WalletIcon, CreditCardIcon, HomeIconAlt, ShieldIcon, ChartIcon, SendIcon, ReceiptIcon } from './icons';
+import ThemeSelector from './ThemeSelector';
 
 const menuItems = [
   { href: '/', label: 'Resumen', Icon: HomeIcon },
@@ -50,7 +51,8 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      <div className="p-3 lg:p-4 border-t border-gray-200">
+      <div className="p-3 lg:p-4 border-t border-gray-200 space-y-3">
+        <ThemeSelector />
         <button className="w-full px-3 lg:px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors text-left text-sm lg:text-base">
           Cerrar sesión
         </button>
