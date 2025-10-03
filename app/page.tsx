@@ -4,11 +4,37 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { accounts, cards, loans, recentTransactions, investments, insurances } from '@/lib/data';
 import { BriefcaseIcon, ArrowDownIcon, CashIcon, ShoppingCartIcon, LightningIcon, GasIcon, FilmIcon, WalletIcon, CreditCardIcon, ChartIcon, ShieldIcon } from '@/components/icons';
+import { BarChart, Bar, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 export default function Home() {
   const [expandedTransaction, setExpandedTransaction] = useState<number | null>(null);
   const totalBalance = accounts.reduce((sum, acc) => sum + acc.balance, 0);
   const totalDebt = [...cards, ...loans].reduce((sum, item) => sum + Math.abs(item.balance), 0);
+
+  // Mock income data for chart
+  const incomeData = [
+    { month: 'Abr', value: 1200000 },
+    { month: 'May', value: 1450000 },
+    { month: 'Jun', value: 1380000 },
+    { month: 'Jul', value: 1560000 },
+    { month: 'Ago', value: 1650000 },
+    { month: 'Sep', value: 1500000 },
+  ];
+
+  // Get CSS variable colors for charts
+  const getComputedColor = (variable: string) => {
+    if (typeof window !== 'undefined') {
+      return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+    }
+    return '#2068D5';
+  };
+
+  // Mock expenses data for pie chart using theme colors
+  const expensesData = [
+    { name: 'Shopping', value: 66, color: 'var(--color-primary)' },
+    { name: 'Transport', value: 26, color: 'var(--color-secondary)' },
+    { name: 'Otros', value: 8, color: 'var(--color-primary-light)' },
+  ];
 
   return (
     <div className="p-4 md:p-6 lg:p-8">
@@ -55,6 +81,89 @@ export default function Home() {
             <p className="text-sm font-medium text-dark">Seguros</p>
             <p className="text-lg font-bold text-dark mt-1">{insurances.length}</p>
           </Link>
+        </div>
+      </div>
+
+      {/* Charts Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* Income Chart */}
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-lg font-bold text-dark">Ingresos</h3>
+            <select className="text-sm text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary">
+              <option>Mensual</option>
+              <option>Semanal</option>
+              <option>Anual</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <p className="text-3xl font-bold text-primary">$1.650.000</p>
+          </div>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={incomeData} margin={{ left: 0, right: 0 }}>
+              <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                {incomeData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={index === incomeData.length - 1 ? 'var(--color-primary)' : 'var(--color-gray-light)'}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+          <div className="flex justify-around mt-2">
+            {incomeData.map((item) => (
+              <span key={item.month} className="text-xs text-gray-500 text-center flex-1">{item.month}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Expenses Chart */}
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-lg font-bold text-dark">Tipo de gastos</h3>
+            <select className="text-sm text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary">
+              <option>Mensual</option>
+              <option>Semanal</option>
+              <option>Anual</option>
+            </select>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="relative" style={{ width: 180, height: 180 }}>
+              <ResponsiveContainer>
+                <PieChart>
+                  <Pie
+                    data={expensesData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
+                    dataKey="value"
+                    strokeWidth={0}
+                  >
+                    {expensesData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-2xl font-bold text-dark">$950.000</p>
+              </div>
+            </div>
+            <div className="space-y-3">
+              {expensesData.map((item) => (
+                <div key={item.name} className="flex items-center gap-3">
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
+                  <div>
+                    <p className="text-sm text-gray-600">{item.name}</p>
+                    <p className="text-lg font-bold text-dark">{item.value}%</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
