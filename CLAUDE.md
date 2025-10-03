@@ -1,0 +1,1 @@
+- no usar favicons. Sólo iconos SVG
