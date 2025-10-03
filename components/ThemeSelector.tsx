@@ -271,7 +271,7 @@ export default function ThemeSelector() {
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200"
+          className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 w-full"
         >
           <div className="flex space-x-1">
             {currentTheme.colors.map((color, index) => (
@@ -282,7 +282,7 @@ export default function ThemeSelector() {
               />
             ))}
           </div>
-          <span className="text-sm font-medium text-dark">{currentTheme.label}</span>
+          <span className="text-sm font-medium text-dark flex-1 text-left">{currentTheme.label}</span>
           <svg
             className={`w-4 h-4 text-gray-600 transition-transform ${isOpen ? 'rotate-180' : ''}`}
             fill="none"
@@ -294,7 +294,7 @@ export default function ThemeSelector() {
         </button>
 
         {isOpen && (
-          <div className="absolute right-0 bottom-full mb-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+          <div className="absolute right-0 bottom-full mb-2 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50 max-h-64 overflow-y-auto">
             {themes.map((t) => (
               <button
                 key={t.value}
