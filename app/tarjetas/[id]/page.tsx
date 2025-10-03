@@ -53,7 +53,7 @@ export default function TarjetaDetailPage({ params }: { params: Promise<{ id: st
             {/* Card */}
             <div
               className="rounded-xl p-8 shadow-lg text-white h-60 flex flex-col justify-between transition-all duration-300"
-              style={{ backgroundColor: selectedCard.color }}
+              style={{ background: selectedCard.gradient }}
             >
               <div>
                 <p className="text-xl font-semibold opacity-90 mb-2">{selectedCard.name}</p>

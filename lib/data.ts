@@ -12,7 +12,7 @@ export const cards = [
     balance: -850000,
     limit: 3000000,
     dueDate: '2025-10-15',
-    color: '#1C1C1E'
+    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const cards = [
     balance: -450000,
     limit: 2000000,
     dueDate: '2025-10-20',
-    color: '#2068D5'
+    gradient: 'linear-gradient(135deg, #2068D5 0%, #3DC681 100%)'
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const cards = [
     balance: -120000,
     limit: 1500000,
     dueDate: '2025-10-18',
-    color: '#3DC681'
+    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
   },
 ];
 

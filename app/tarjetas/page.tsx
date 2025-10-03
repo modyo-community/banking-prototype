@@ -11,7 +11,7 @@ export default function TarjetasPage() {
           <Link key={card.id} href={`/tarjetas/${card.id}`}>
             <div
               className="rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow cursor-pointer text-white h-52 flex flex-col justify-between"
-              style={{ backgroundColor: card.color }}
+              style={{ background: card.gradient }}
             >
               <div>
                 <p className="text-lg font-semibold opacity-90 mb-1">{card.name}</p>
