@@ -23,7 +23,7 @@ export default function CreditosPage() {
       <div className="space-y-6">
         {loans.map((loan) => (
           <Link key={loan.id} href={`/creditos/${loan.id}`} className="block">
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all cursor-pointer hover:scale-[1.01]">
+            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-dark mb-1">{loan.type}</h3>

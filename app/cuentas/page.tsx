@@ -5,15 +5,12 @@ import { WalletIcon } from '@/components/icons';
 export default function CuentasPage() {
   return (
     <div className="p-4 md:p-6 lg:p-8">
-      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8 animate-fade-in">Mis Cuentas</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-dark mb-6 md:mb-8">Mis Cuentas</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {accounts.map((account, index) => (
+        {accounts.map((account) => (
           <Link key={account.id} href={`/cuentas/${account.id}`}>
-            <div
-              className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all cursor-pointer hover:scale-105 animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <p className="text-lg font-semibold text-dark">{account.type}</p>

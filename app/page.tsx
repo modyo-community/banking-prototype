@@ -8,13 +8,13 @@ export default function Home() {
 
   return (
     <div className="p-4 md:p-6 lg:p-8">
-      <div className="mb-6 md:mb-8 animate-fade-in">
+      <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-dark mb-2">Bienvenido, Juan</h1>
         <p className="text-gray-600">Este es tu resumen financiero</p>
       </div>
 
       {/* Main Balance Card */}
-      <div className="bg-gradient-to-br from-primary to-primary-light rounded-2xl p-6 md:p-8 text-white mb-8 shadow-lg animate-slide-up">
+      <div className="bg-gradient-to-br from-primary to-primary-light rounded-2xl p-6 md:p-8 text-white mb-8 shadow-lg">
         <p className="text-sm opacity-90 mb-1">Saldo total disponible</p>
         <p className="text-4xl md:text-5xl font-bold mb-6">${totalBalance.toLocaleString('es-CL')}</p>
         <div className="flex gap-4">
@@ -28,23 +28,23 @@ export default function Home() {
       </div>
 
       {/* Quick Access */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-        <Link href="/cuentas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 text-center">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8">
+        <Link href="/cuentas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
           <WalletIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
           <p className="text-sm font-medium text-dark">Cuentas</p>
           <p className="text-lg font-bold text-dark mt-1">{accounts.length}</p>
         </Link>
-        <Link href="/tarjetas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 text-center">
+        <Link href="/tarjetas" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
           <CreditCardIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
           <p className="text-sm font-medium text-dark">Tarjetas</p>
           <p className="text-lg font-bold text-dark mt-1">{cards.length}</p>
         </Link>
-        <Link href="/inversiones" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 text-center">
+        <Link href="/inversiones" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
           <ChartIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
           <p className="text-sm font-medium text-dark">Inversiones</p>
           <p className="text-lg font-bold text-dark mt-1">{investments.length}</p>
         </Link>
-        <Link href="/seguros" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 text-center">
+        <Link href="/seguros" className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow text-center">
           <ShieldIcon className="w-8 h-8 mx-auto mb-2 text-primary" />
           <p className="text-sm font-medium text-dark">Seguros</p>
           <p className="text-lg font-bold text-dark mt-1">{insurances.length}</p>
@@ -52,15 +52,11 @@ export default function Home() {
       </div>
 
       {/* Recent Transactions */}
-      <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+      <div>
         <h2 className="text-xl font-bold text-dark mb-4">Movimientos recientes</h2>
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          {recentTransactions.map((transaction, index) => (
-            <div
-              key={transaction.id}
-              className="flex items-center justify-between p-5 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-all cursor-pointer hover:scale-[1.01]"
-              style={{ animationDelay: `${0.3 + index * 0.05}s` }}
-            >
+          {recentTransactions.map((transaction) => (
+            <div key={transaction.id} className="flex items-center justify-between p-5 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors cursor-pointer">
               <div className="flex items-start space-x-4 flex-1">
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                   transaction.type === 'income' ? 'bg-secondary/10 text-secondary' : 'bg-gray-100 text-gray-600'
