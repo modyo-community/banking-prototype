@@ -56,7 +56,7 @@ export default function DocumentosPage() {
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
-                <div className="mb-2 text-gray-600">{type.icon}</div>
+                <div className="mb-2 text-gray-600 flex justify-center">{type.icon}</div>
                 <p className="text-sm font-medium text-dark text-center">{type.name}</p>
               </button>
             ))}
