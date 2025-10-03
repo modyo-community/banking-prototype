@@ -14,7 +14,7 @@ export default function BeneficiosPage() {
   const discounts = [
     {
       category: 'Restaurantes',
-      icon: '🍴',
+      icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>,
       offers: [
         { name: 'Starbucks', discount: '15%', description: 'En toda la carta' },
         { name: 'McDonald\'s', discount: '20%', description: 'Combo del día' },
@@ -23,7 +23,7 @@ export default function BeneficiosPage() {
     },
     {
       category: 'Entretenimiento',
-      icon: '🎬',
+      icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" /></svg>,
       offers: [
         { name: 'Cineplanet', discount: '25%', description: 'Entradas 2D y 3D' },
         { name: 'Netflix', discount: '1 mes gratis', description: 'Plan premium' },
@@ -32,7 +32,7 @@ export default function BeneficiosPage() {
     },
     {
       category: 'Viajes',
-      icon: '✈️',
+      icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>,
       offers: [
         { name: 'LATAM', discount: '15%', description: 'Vuelos nacionales' },
         { name: 'Booking.com', discount: '10%', description: 'Reservas de hotel' },
@@ -41,7 +41,7 @@ export default function BeneficiosPage() {
     },
     {
       category: 'Compras',
-      icon: '🛍️',
+      icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>,
       offers: [
         { name: 'Falabella', discount: '10%', description: 'En todo el sitio' },
         { name: 'Ripley', discount: '15%', description: 'Electrónica' },
@@ -80,8 +80,9 @@ export default function BeneficiosPage() {
           </div>
           {points.expiring > 0 && (
             <div className="mt-4 pt-4 border-t border-white/20">
-              <p className="text-sm">
-                ⚠️ Tienes {points.expiring.toLocaleString()} puntos que vencen el {points.expiringDate}
+              <p className="text-sm flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                Tienes {points.expiring.toLocaleString()} puntos que vencen el {points.expiringDate}
               </p>
             </div>
           )}
@@ -128,7 +129,9 @@ export default function BeneficiosPage() {
               <h3 className="text-lg font-bold text-dark mb-4">Canjea tus puntos</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
-                  <div className="text-3xl mb-2">🎁</div>
+                  <div className="mb-2 text-gray-600">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>
+                  </div>
                   <h4 className="font-bold text-dark mb-1">Gift Cards</h4>
                   <p className="text-sm text-gray-600 mb-3">Desde 5.000 puntos</p>
                   <button className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-light transition-colors text-sm font-medium">
@@ -137,7 +140,9 @@ export default function BeneficiosPage() {
                 </div>
 
                 <div className="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
-                  <div className="text-3xl mb-2">✈️</div>
+                  <div className="mb-2 text-gray-600">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+                  </div>
                   <h4 className="font-bold text-dark mb-1">Millas LATAM</h4>
                   <p className="text-sm text-gray-600 mb-3">1 punto = 1 milla</p>
                   <button className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-light transition-colors text-sm font-medium">
@@ -146,7 +151,9 @@ export default function BeneficiosPage() {
                 </div>
 
                 <div className="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
-                  <div className="text-3xl mb-2">💰</div>
+                  <div className="mb-2 text-gray-600">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  </div>
                   <h4 className="font-bold text-dark mb-1">Descuento en deuda</h4>
                   <p className="text-sm text-gray-600 mb-3">100 puntos = $1.000</p>
                   <button className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-light transition-colors text-sm font-medium">
@@ -191,7 +198,7 @@ export default function BeneficiosPage() {
             {discounts.map((category) => (
               <div key={category.category} className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-bold text-dark mb-4 flex items-center gap-2">
-                  <span className="text-2xl">{category.icon}</span>
+                  <span className="text-gray-600">{category.icon}</span>
                   {category.category}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

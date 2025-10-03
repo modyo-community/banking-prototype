@@ -71,15 +71,15 @@ export default function SeguroDetailPage({ params }: { params: Promise<{ id: str
             {insurance.name === 'Seguro de Vida' && (
               <>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Cobertura por fallecimiento</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Invalidez total y permanente</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Asistencia funeraria</span>
                 </li>
               </>
@@ -87,15 +87,15 @@ export default function SeguroDetailPage({ params }: { params: Promise<{ id: str
             {insurance.name === 'Seguro de Salud' && (
               <>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Hospitalización</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Cirugías</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Medicamentos</span>
                 </li>
               </>
@@ -103,15 +103,15 @@ export default function SeguroDetailPage({ params }: { params: Promise<{ id: str
             {insurance.name === 'Seguro Automotriz' && (
               <>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Daños propios y a terceros</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Robo total</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-secondary mr-2">✓</span>
+                  <svg className="w-5 h-5 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                   <span className="text-gray-700">Asistencia en ruta 24/7</span>
                 </li>
               </>
