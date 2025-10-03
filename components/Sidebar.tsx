@@ -32,6 +32,19 @@ const menuItems = [
   { href: '/pagar', label: 'Pagar', Icon: ReceiptIcon },
 ];
 
+const servicesItems = [
+  { href: '/beneficios', label: 'Beneficios' },
+  { href: '/mensajes', label: 'Mensajes' },
+  { href: '/notificaciones', label: 'Notificaciones' },
+  { href: '/documentos', label: 'Documentos' },
+];
+
+const supportItems = [
+  { href: '/ejecutivo', label: 'Mi Ejecutivo' },
+  { href: '/ayuda', label: 'Ayuda' },
+  { href: '/perfil', label: 'Mi Perfil' },
+];
+
 export default function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
@@ -96,7 +109,8 @@ export default function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
         </div>
 
       <nav className="flex-1 p-3 lg:p-4 overflow-y-auto">
-        <ul className="space-y-1 lg:space-y-2">
+        {/* Main Menu */}
+        <ul className="space-y-1 lg:space-y-2 mb-6">
           {menuItems.map((item) => {
             const isActive = item.href === '/'
               ? pathname === '/'
@@ -170,6 +184,56 @@ export default function Sidebar({ isMobileOpen, onClose }: SidebarProps) {
             );
           })}
         </ul>
+
+        {/* Services Section */}
+        <div className="mb-6">
+          <p className="text-xs font-medium text-gray-500 px-3 mb-2">Servicios</p>
+          <ul className="space-y-1">
+            {servicesItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center px-3 lg:px-4 py-2 rounded-lg transition-colors text-sm lg:text-base ${
+                      isActive
+                        ? 'bg-[#f6f9fd] text-primary font-medium'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    onClick={onClose}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        {/* Support Section */}
+        <div>
+          <p className="text-xs font-medium text-gray-500 px-3 mb-2">Soporte</p>
+          <ul className="space-y-1">
+            {supportItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center px-3 lg:px-4 py-2 rounded-lg transition-colors text-sm lg:text-base ${
+                      isActive
+                        ? 'bg-[#f6f9fd] text-primary font-medium'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    onClick={onClose}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </nav>
 
       <div className="p-3 lg:p-4 border-t border-gray-200 space-y-3">
